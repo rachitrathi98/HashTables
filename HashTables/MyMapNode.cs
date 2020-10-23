@@ -19,7 +19,11 @@ namespace HashTables
             this.size = size;
             this.items = new LinkedList<KeyValue<K, V>>[size];
         }
-
+        /// <summary>
+        /// Gets the index position from haschcode.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         protected int GetArrayPosition(K key)
         {
             int hash = key.GetHashCode();
@@ -27,6 +31,11 @@ namespace HashTables
             return Math.Abs(position);
         }
 
+        /// <summary>
+        /// Gets the specified key from a linked list.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         public V Get(K key)
         {
             int position = GetArrayPosition(key);
@@ -39,6 +48,11 @@ namespace HashTables
 
             return default(V);
         }
+        /// <summary>
+        /// Adds the specified key and value in the linked list at the specified index.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
         public void Add(K key, V value)
         {
             int position = GetArrayPosition(key);
@@ -49,6 +63,10 @@ namespace HashTables
             Console.WriteLine(item.Key + " " + item.Value);
 
         }
+        /// <summary>
+        /// Removes the specified key from the linked list.
+        /// </summary>
+        /// <param name="key">The key.</param>
         public void Remove(K key)
         {
             int position = GetArrayPosition(key);
@@ -68,8 +86,12 @@ namespace HashTables
                 linkedList.Remove(foundItem);
             }
         }
-
-        protected LinkedList<KeyValue<K,V>> GetLinkedList(int position)
+        /// <summary>
+        /// Creates a new linked list on the given index
+        /// </summary>
+        /// <param name="position">The position.</param>
+        /// <returns></returns>
+        public LinkedList<KeyValue<K,V>> GetLinkedList(int position)
         {
             LinkedList<KeyValue<K, V>> linkedList = items[position];
             if (linkedList == null)
@@ -79,7 +101,9 @@ namespace HashTables
             }
             return linkedList;
         }
-
+        /// <summary>
+        /// Displays the key and value inside the linked list
+        /// </summary>
         public void Display()
         {
             foreach (var linkedList in items)
@@ -93,6 +117,10 @@ namespace HashTables
                     }
             }
         }
+        /// <summary>
+        /// Gets the freqency of each word in the sentence.
+        /// </summary>
+        /// <param name="value">The value.</param>
         public void GetFreq(V value)
         {
             int freq = 0;
