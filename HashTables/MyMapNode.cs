@@ -160,5 +160,27 @@ namespace HashTables
                 }
             }
         }
+        /// <summary>
+        /// Removes the key depending on the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public void RemoveValue(V value)
+        {
+            foreach (LinkedList<KeyValue<K, V>> list in items)
+            {
+                if (list == null)
+                    continue;
+                foreach (KeyValue<K, V> obj in list)
+                {
+                    if (obj.Equals(null))
+                        continue;
+                    if (obj.Value.Equals(value))
+                    {
+                        Remove(obj.Key);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
